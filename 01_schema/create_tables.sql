@@ -6,6 +6,7 @@ create table website_sessions(
 	website_session_id INT PRIMARY KEY NOT NULL,
     created_at DATETIME NOT NULL,
     user_id INT,
+    is_repeated_session TINYINT,
     utm_source VARCHAR(50),
     utm_campaign VARCHAR(50),
     utm_content VARCHAR(50),
@@ -18,8 +19,8 @@ create table website_sessions(
 -- Represents one page view inside a session.
 CREATE TABLE website_pageviews(
     website_pageview_id INT PRIMARY KEY NOT NULL,
-    website_session_id INT NOT NULL,
     created_at DATETIME NOT NULL,
+    website_session_id INT NOT NULL,
     pageview_url VARCHAR(255),
     CONSTRAINT fk_pageviews_sessions
 		FOREIGN KEY(website_session_id) 
@@ -32,9 +33,11 @@ CREATE TABLE website_pageviews(
 -- Represents one completed order.
 CREATE TABLE orders(
 	order_id INT PRIMARY KEY NOT NULL,
+    created_at DATETIME NOT NULL,
     website_session_id INT NOT NULL,
     user_id INT,
-    created_at DATETIME NOT NULL,
+    primary_product_id TINYINT,
+    items_purchased TINYINT,
     price_usd DECIMAL(10,2) NOT NULL,
     cogs_usd DECIMAL(10,2) NOT NULL,
     CONSTRAINT fk_orders_sessions
@@ -58,12 +61,12 @@ CREATE TABLE products(
 -- Represents products inside an order.
 CREATE TABLE order_items(
 	order_item_id INT PRIMARY KEY NOT NULL,
+    created_at DATETIME NOT NULL,
     order_id INT NOT NULL,
     product_id INT NOT NULL,
-    created_at DATETIME NOT NULL,
+    is_primary_item TINYINT NOT NULL,
     price_usd DECIMAL(10,2) NOT NULL,
     cogs_usd DECIMAL(10,2)NOT NULL,
-    is_primary_item TINYINT NOT NULL,
     CONSTRAINT fk_items_order FOREIGN KEY(order_id) REFERENCES orders(order_id),
     CONSTRAINT fk_items_product FOREIGN KEY(product_id) REFERENCES products(product_id),
     INDEX idx_items_order_id (order_id),
@@ -75,8 +78,9 @@ CREATE TABLE order_items(
 -- Represents refunded items.
 CREATE TABLE order_item_refunds(
 	order_item_refund_id INT PRIMARY KEY NOT NULL,
-    order_item_id INT NOT NULL,
     created_at DATETIME NOT NULL,
+    order_item_id INT NOT NULL,
+    order_id INT NOT NULL,
     refund_amount_usd DECIMAL(10,2) NOT NULL,
     CONSTRAINT fk_refunds_order_item
 		FOREIGN KEY(order_item_id)	
