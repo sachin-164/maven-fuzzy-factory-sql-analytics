@@ -1,10 +1,10 @@
 -- Row counts per table
-SELECT COUNT(*) FROM website_sessions;
-SELECT COUNT(*) from website_pageviews;
-SELECT COUNT(*) from products;
-SELECT COUNT(*) from orders;
-SELECT COUNT(*) from order_items;
-SELECT COUNT(*) from order_item_refunds;
+select count(*) from website_sessions;
+select count(*) from website_pageviews;
+select count(*) from products;
+select count(*) from orders;
+select count(*) from order_items;
+select count(*) from order_item_refunds;
 
 -- Duplicate primary keys
 SELECT website_session_id,
@@ -43,7 +43,6 @@ FROM order_item_refunds
 GROUP BY order_item_refund_id
 HAVING COUNT(*) > 1;
 
-
 -- Orphan foreign keys check
 SELECT wp.website_session_id
 FROM website_pageviews wp
@@ -73,9 +72,7 @@ SELECT oii.order_item_id
 FROM order_item_refunds oii
 LEFT JOIN order_items oi
 	ON oii.order_item_id = oi.order_item_id
-WHERE oii.order_item_id IS NULL
-
-
+WHERE oii.order_item_id IS NULL;
 
 -- Null and Range Checks
 SELECT COUNT(*) FROM website_sessions WHERE created_at IS NULL;
