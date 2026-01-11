@@ -1,102 +1,116 @@
-# Olist E-Commerce SQL Analytics
+# Toy Store E-Commerce SQL Analytics
+
+**Maven Fuzzy Factory**
 
 ## Problem Statement
 
-The objective of this project is to analyze a real-world e-commerce dataset to understand customer behavior, revenue trends, product and seller performance, and payment patterns in a marketplace environment.
+The objective of this project is to analyze a real-world e-commerce dataset from Maven Fuzzy Factory in order to understand website traffic, customer conversion behavior, marketing channel effectiveness, product performance, and refund patterns.
 
-The analysis focuses on identifying revenue concentration, customer retention issues, inactivity and churn risk, time-based revenue dynamics, and operational dependencies on top products, sellers, and payment methods to support data-driven business decisions.
+The analysis focuses on identifying where users drop out of the purchasing funnel, which marketing channels generate the most valuable traffic, and which products contribute to or hurt overall revenue, so that the business can make data-driven decisions to improve growth and profitability.
 
 ---
 
 ## Dataset
 
-This project uses the Brazilian Olist E-Commerce dataset, which contains transactional data covering customers, orders, order items, products, sellers, payments, and timestamps for the full order lifecycle.
+This project uses the **Toy Store E-Commerce Database (Maven Fuzzy Factory)** provided by Maven Analytics.
 
-The dataset represents a real-world marketplace environment with multiple entities and complex relationships, making it suitable for end-to-end SQL analytics and business analysis.
+The dataset includes:
+
+* Website sessions and marketing attribution
+* Page-level website activity
+* Orders and revenue
+* Product-level sales
+* Refund and return information
+
+This dataset represents a realistic online retail environment and supports full funnel, marketing, and product performance analysis.
 
 ---
 
 ## Tech Stack
 
-- MySQL 8.4  
-- SQL (CTEs, subqueries, window functions)  
-- MySQL Workbench  
-- Git & GitHub  
+* MySQL
+* SQL (CTEs, subqueries, joins, aggregations)
+* MySQL Workbench
+* Git & GitHub
 
 ---
 
 ## Database Schema Overview
 
-The database follows a normalized transactional schema including:
+The database is designed to track the full customer journey from the first website visit to purchase and potential refund.
 
-- customers  
-- orders  
-- order_items  
-- products  
-- sellers  
-- payments  
+Main tables include:
 
-Primary keys, foreign keys, and indexes were defined to ensure referential integrity, enforce data consistency, and improve query performance.
+* website_sessions
+* website_pageviews
+* orders
+* order_items
+* products
+* order_item_refunds
+
+Primary keys, foreign keys, and indexes were defined to ensure data integrity, enforce correct relationships, and enable efficient analytical queries.
 
 ---
 
 ## Data Preparation & Validation
 
-The following steps were performed before analysis:
+Before running any analysis, the data was validated to ensure accuracy and reliability.
 
-- Loaded raw CSV files using `LOAD DATA LOCAL INFILE`
-- Verified row counts across all tables
-- Performed orphan checks to ensure referential integrity
-- Conducted null sanity checks on critical columns
-- Validated temporal consistency across order lifecycle timestamps
+This included:
 
-These steps ensured the analysis was performed on reliable and consistent data.
+* Verifying row counts for all tables
+* Checking for duplicate primary keys
+* Validating foreign key relationships
+* Performing null and value sanity checks
+* Conducting temporal integrity checks across the customer journey
+
+These steps ensured the dataset was clean, consistent, and suitable for business analysis.
 
 ---
 
 ## Analysis Scope
 
-The analysis was performed entirely using SQL and covers:
+The analysis was conducted entirely using SQL and focused on the following areas:
 
-- Customer revenue contribution and concentration
-- One-time vs repeat customer behavior
-- Customer inactivity and churn risk
-- Monthly revenue trends and volatility
-- Month-over-month revenue growth
-- Top product performance by month
-- Seller revenue concentration
-- Payment behavior and installment impact
+* Core business performance (sessions, orders, revenue, conversion rate)
+* Website conversion funnel
+* Marketing channel efficiency
+* Revenue per session by channel
+* Product performance and sales volume
+* Refund rates and revenue loss
 
-Advanced SQL techniques such as CTEs, subqueries, and window functions were used extensively.
+CTEs and subqueries were used to structure complex queries and produce clean, reusable analytical outputs.
 
 ---
 
 ## Key Questions Answered
 
-- Who are the highest-value customers and how concentrated is revenue?
-- How many customers are one-time buyers versus repeat buyers?
-- What proportion of customers are inactive and at churn risk?
-- How has revenue evolved over time and how volatile is growth?
-- Which products dominate revenue on a monthly basis?
-- How dependent is the marketplace on top sellers?
-- How significant are installment payments in total revenue?
+* How many users visit the website and how many convert into buyers?
+* Where do users drop off in the purchase funnel?
+* Which marketing channels generate the most efficient traffic?
+* How much revenue does each channel generate per session?
+* Which products drive the most revenue and unit sales?
+* Which products experience high refund rates?
+* How much revenue is lost due to refunds?
 
 ---
 
 ## Key Insights
+
 Detailed business insights and recommendations are documented in:
-`insights/final_insights.md`
+`12_insights/key_findings.md`
 
 ---
 
 ## Repository Structure
-01_schema/ -- database tables, constraints, indexes
-02_ingestion/ -- data loading scripts
-03_data_quality/ -- validation and integrity checks
-05_core_metrics/ -- business KPIs
-06_funnel_analysis/ -- conversion funnel
-07_marketing_analysis/ -- channel performance
-08_product_analysis/ -- product and refund metrics
-09_Insights/ -- key findings
-10_views/ -- final analytical views
+
+01_schema/
+02_ingestion/
+03_data_quality/
+04_core_metrics/
+05_funnel_analysis/
+06_marketing_analysis/
+07_product_analysis/
+08_views/
+09_Insights/
 README.md
