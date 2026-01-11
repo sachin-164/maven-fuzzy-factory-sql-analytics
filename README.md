@@ -1,2 +1,102 @@
-# maven-fuzzy-factory-sql-analytics
-This project uses the Maven Fuzzy Factory Toy Store E-Commerce dataset, which represents the data of an online retailer selling teddy bears. The dataset captures the complete customer journey, from website visits and marketing traffic to orders, products, and refunds.
+# Olist E-Commerce SQL Analytics
+
+## Problem Statement
+
+The objective of this project is to analyze a real-world e-commerce dataset to understand customer behavior, revenue trends, product and seller performance, and payment patterns in a marketplace environment.
+
+The analysis focuses on identifying revenue concentration, customer retention issues, inactivity and churn risk, time-based revenue dynamics, and operational dependencies on top products, sellers, and payment methods to support data-driven business decisions.
+
+---
+
+## Dataset
+
+This project uses the Brazilian Olist E-Commerce dataset, which contains transactional data covering customers, orders, order items, products, sellers, payments, and timestamps for the full order lifecycle.
+
+The dataset represents a real-world marketplace environment with multiple entities and complex relationships, making it suitable for end-to-end SQL analytics and business analysis.
+
+---
+
+## Tech Stack
+
+- MySQL 8.4  
+- SQL (CTEs, subqueries, window functions)  
+- MySQL Workbench  
+- Git & GitHub  
+
+---
+
+## Database Schema Overview
+
+The database follows a normalized transactional schema including:
+
+- customers  
+- orders  
+- order_items  
+- products  
+- sellers  
+- payments  
+
+Primary keys, foreign keys, and indexes were defined to ensure referential integrity, enforce data consistency, and improve query performance.
+
+---
+
+## Data Preparation & Validation
+
+The following steps were performed before analysis:
+
+- Loaded raw CSV files using `LOAD DATA LOCAL INFILE`
+- Verified row counts across all tables
+- Performed orphan checks to ensure referential integrity
+- Conducted null sanity checks on critical columns
+- Validated temporal consistency across order lifecycle timestamps
+
+These steps ensured the analysis was performed on reliable and consistent data.
+
+---
+
+## Analysis Scope
+
+The analysis was performed entirely using SQL and covers:
+
+- Customer revenue contribution and concentration
+- One-time vs repeat customer behavior
+- Customer inactivity and churn risk
+- Monthly revenue trends and volatility
+- Month-over-month revenue growth
+- Top product performance by month
+- Seller revenue concentration
+- Payment behavior and installment impact
+
+Advanced SQL techniques such as CTEs, subqueries, and window functions were used extensively.
+
+---
+
+## Key Questions Answered
+
+- Who are the highest-value customers and how concentrated is revenue?
+- How many customers are one-time buyers versus repeat buyers?
+- What proportion of customers are inactive and at churn risk?
+- How has revenue evolved over time and how volatile is growth?
+- Which products dominate revenue on a monthly basis?
+- How dependent is the marketplace on top sellers?
+- How significant are installment payments in total revenue?
+
+---
+
+## Key Insights
+Detailed business insights and recommendations are documented in:
+`insights/final_insights.md`
+
+---
+
+## Repository Structure
+01_schema/ -- database tables, constraints, indexes
+02_ingestion/ -- data loading scripts
+03_data_quality/ -- validation and integrity checks
+05_core_metrics/ -- business KPIs
+06_funnel_analysis/ -- conversion funnel
+07_marketing_analysis/ -- channel performance
+08_product_analysis/ -- product and refund metrics
+09_Insights/ -- key findings
+10_views/ -- final analytical views
+README.md
